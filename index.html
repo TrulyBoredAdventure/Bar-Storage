@@ -11,11 +11,13 @@
   <header class="topbar">
     <div class="brand">
       <img src="icon.svg" alt="" width="38" height="38">
-      <div>
-        <h1>Bar Storage</h1>
-        <p>RS3 action bar references and personal presets.</p>
-      </div>
+      <div><h1>Bar Storage</h1><p>RS3 action bar references, scanning, and personal presets.</p></div>
     </div>
+    <nav class="tabs" aria-label="Main sections">
+      <button class="tab active" data-tab="library">Library</button>
+      <button class="tab" data-tab="scanner">Scanner</button>
+      <button class="tab" data-tab="credits">Credits</button>
+    </nav>
     <div class="top-actions">
       <button id="newPresetBtn">New bar</button>
       <button id="exportBtn" class="secondary">Export</button>
@@ -24,30 +26,75 @@
   </header>
 
   <main class="shell">
-    <section class="filters card" aria-label="Bar filters">
-      <input id="searchInput" type="search" placeholder="Search boss, Slayer monster, style, ability..." autocomplete="off">
-      <select id="categoryFilter"><option value="all">All categories</option></select>
-      <select id="styleFilter"><option value="all">All styles</option></select>
-      <select id="modeFilter"><option value="all">All modes</option></select>
-      <select id="weaponFilter"><option value="all">All weapons</option></select>
-      <span id="resultCount" class="count">Loading…</span>
+    <section id="libraryView" class="view active">
+      <section class="filters card" aria-label="Bar filters">
+        <input id="searchInput" type="search" placeholder="Search boss, Slayer monster, style, ability..." autocomplete="off">
+        <select id="sourceFilter"><option value="all">All sources</option><option value="PvME">PvME</option><option value="RuneScape Wiki">RuneScape Wiki</option><option value="User">My bars</option></select>
+        <select id="categoryFilter"><option value="all">All categories</option></select>
+        <select id="styleFilter"><option value="all">All styles</option></select>
+        <select id="modeFilter"><option value="all">All modes</option></select>
+        <select id="weaponFilter"><option value="all">All weapons</option></select>
+        <span id="resultCount" class="count">Loading…</span>
+      </section>
+      <section id="barList" class="bar-list" aria-live="polite"><p class="muted">Loading bars…</p></section>
     </section>
 
-    <section id="barList" class="bar-list" aria-live="polite">
-      <p class="muted">Loading bars…</p>
+    <section id="scannerView" class="view">
+      <section class="card scanner-card">
+        <div class="section-head">
+          <div><h2>Active Bar Scanner</h2><p>Reads only the main action bar attached to the health, adrenaline, prayer, and summoning display. Additional visible bars are ignored.</p></div>
+          <span id="scannerTemplateStatus" class="status-pill">Templates not loaded</span>
+        </div>
+        <div class="scanner-actions">
+          <button id="scanAlt1Btn">Scan active bar</button>
+          <label class="import-label secondary">Open screenshot<input id="scanFileInput" type="file" accept="image/*" hidden></label>
+          <button id="pasteHelpBtn" class="secondary">Paste screenshot</button>
+          <button id="clearScanBtn" class="secondary">Clear</button>
+        </div>
+        <p id="scannerStatus" class="muted">Open this tab in Alt1 and select Scan active bar, or paste/upload a RuneScape screenshot.</p>
+        <div id="scannerPreviewWrap" class="scanner-preview-wrap hidden">
+          <canvas id="scannerPreview" width="504" height="36" aria-label="Detected active action bar"></canvas>
+        </div>
+      </section>
+
+      <section id="scanResultsCard" class="card scanner-results hidden">
+        <div class="section-head"><div><h2>Detected order</h2><p>Slots remain in their exact left-to-right order. Correct an uncertain match before saving; corrected icons are learned locally for future scans.</p></div><span id="scanConfidence" class="status-pill"></span></div>
+        <div id="scanSlotEditor" class="scan-slot-editor"></div>
+        <div class="scan-save-grid">
+          <label>Name<input id="scanPresetName" maxlength="80" value="Scanned Bar"></label>
+          <label>Combat style<select id="scanPresetStyle"></select></label>
+          <label>Mode<select id="scanPresetMode"></select></label>
+          <label>Weapon type<select id="scanPresetWeapon"></select></label>
+          <label>Target<input id="scanPresetTarget" maxlength="80" placeholder="Boss, Slayer monster, general"></label>
+        </div>
+        <div class="scan-save-actions"><button id="saveScanBtn">Save scanned bar</button></div>
+      </section>
+
+      <section class="card scanner-notes">
+        <h3>Scanner requirements</h3>
+        <p>Use the standard horizontal main action bar at 100% RuneScape interface scaling. The scanner identifies the main bar from the four resource displays above it, so the other visible action bars are not included.</p>
+      </section>
+    </section>
+
+    <section id="creditsView" class="view">
+      <section class="card credits-card">
+        <h2>Credits</h2>
+        <div class="credit-grid">
+          <article><h3>Bar Storage</h3><p>Created and maintained by <strong>TrulyBoredAdventure</strong>.</p></article>
+          <article><h3>Alt1 Toolkit</h3><p>Screen capture and interface detection libraries by Skillbert and the RuneApps project.</p><a href="https://runeapps.org/alt1" target="_blank" rel="noopener noreferrer">RuneApps Alt1</a></article>
+          <article><h3>PvM Encyclopedia</h3><p>Reference bars, guide links, and ability artwork sources.</p><a href="https://pvme.io/" target="_blank" rel="noopener noreferrer">PvME</a></article>
+          <article><h3>RuneScape Wiki</h3><p>Reference bars, ability information, and fallback artwork sources.</p><a href="https://runescape.wiki/" target="_blank" rel="noopener noreferrer">RuneScape Wiki</a></article>
+          <article><h3>RuneScape</h3><p>RuneScape and its game artwork are owned by Jagex Ltd. This fan project is not affiliated with Jagex.</p></article>
+        </div>
+      </section>
     </section>
   </main>
 
-  <dialog id="detailDialog" class="detail-dialog">
-    <article id="detailPanel"></article>
-  </dialog>
+  <dialog id="detailDialog" class="detail-dialog"><article id="detailPanel"></article></dialog>
 
   <dialog id="editorDialog">
     <form id="editorForm">
-      <div class="dialog-head">
-        <h2 id="editorTitle">Bar</h2>
-        <button type="button" id="cancelEdit" class="icon-button secondary" aria-label="Close">×</button>
-      </div>
+      <div class="dialog-head"><h2 id="editorTitle">Bar</h2><button type="button" id="cancelEdit" class="icon-button secondary" aria-label="Close">×</button></div>
       <input type="hidden" id="presetId">
       <div class="form-grid">
         <label>Name<input id="presetName" required maxlength="80" placeholder="Necro Vorkath"></label>
@@ -58,19 +105,17 @@
         <label>Target<input id="presetTarget" maxlength="80" placeholder="Boss, Slayer monster, general"></label>
       </div>
       <label>Tags<input id="presetTags" maxlength="180" placeholder="boss, beginner, revo++"></label>
-      <label>Abilities <span class="small">maximum 14; one per line or comma separated</span>
-        <textarea id="presetAbilities" rows="7" placeholder="Touch of Death&#10;Soul Sap&#10;Death Skulls"></textarea>
-      </label>
-      <p id="abilityWarning" class="warning hidden">Only the first 14 abilities will be saved.</p>
+      <label>Abilities <span class="small">maximum 14; one slot per line; leave a line blank for an empty slot</span><textarea id="presetAbilities" rows="14" placeholder="Touch of Death&#10;Soul Sap&#10;Death Skulls"></textarea></label>
+      <p id="abilityWarning" class="warning hidden">Only the first 14 slots will be saved.</p>
       <label>Unlock requirements<textarea id="presetRequirements" rows="3" placeholder="One per line"></textarea></label>
       <label>Notes<textarea id="presetNotes" rows="4"></textarea></label>
-      <menu>
-        <button type="button" id="cancelEditBottom" class="secondary">Cancel</button>
-        <button type="submit">Save</button>
-      </menu>
+      <menu><button type="button" id="cancelEditBottom" class="secondary">Cancel</button><button type="submit">Save</button></menu>
     </form>
   </dialog>
 
+  <script src="vendor/alt1-base.js"></script>
+  <script src="vendor/alt1-ocr.js"></script>
+  <script src="vendor/alt1-ability.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>

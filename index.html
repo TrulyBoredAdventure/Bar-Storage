@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ability Bar Reference & Preset Library</title>
+  <title>Bar Storage</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
     <div>
-      <h1>Ability Bar Reference & Preset Library</h1>
-      <p>RS3 recommended bars plus your saved personal presets.</p>
+      <h1>Bar Storage</h1>
+      <p>RS3 action bar references and saved personal presets.</p>
     </div>
     <div class="top-actions">
       <button id="newPresetBtn">New preset</button>
@@ -19,58 +19,22 @@
     </div>
   </header>
 
-  <main class="layout">
-    <aside class="sidebar">
+  <main class="shell">
+    <section class="filters card">
       <input id="searchInput" type="search" placeholder="Search boss, Slayer, style, ability..." autocomplete="off" />
-      <div class="filters">
-        <select id="categoryFilter"><option value="all">All categories</option></select>
-        <select id="styleFilter"><option value="all">All styles</option></select>
-        <select id="modeFilter"><option value="all">All modes</option></select>
-        <select id="weaponFilter"><option value="all">All weapons</option></select>
-      </div>
-      <section>
-        <h2>Bars</h2>
-        <div id="barList" class="bar-list"></div>
-      </section>
-    </aside>
-
-    <section class="content">
-      <div id="emptyState" class="card empty">
-        <h2>Select an ability bar</h2>
-        <p>Choose a recommended bar or create your own preset.</p>
-      </div>
-
-      <article id="detailPanel" class="card detail hidden">
-        <div class="detail-head">
-          <div>
-            <div id="detailType" class="eyebrow"></div>
-            <h2 id="detailName"></h2>
-            <p id="detailSubtitle"></p>
-          </div>
-          <div class="detail-actions">
-            <button id="duplicateBtn">Duplicate</button>
-            <button id="editBtn" class="secondary">Edit</button>
-            <button id="deleteBtn" class="danger hidden">Delete</button>
-          </div>
-        </div>
-
-        <div id="tags" class="tags"></div>
-        <h3>Visual bar layout</h3>
-        <div id="abilityGrid" class="ability-grid"></div>
-
-        <div class="two-col">
-          <section>
-            <h3>Unlock requirements</h3>
-            <ul id="requirements"></ul>
-          </section>
-          <section>
-            <h3>Notes</h3>
-            <p id="notes"></p>
-          </section>
-        </div>
-      </article>
+      <select id="categoryFilter"><option value="all">All categories</option></select>
+      <select id="styleFilter"><option value="all">All styles</option></select>
+      <select id="modeFilter"><option value="all">All modes</option></select>
+      <select id="weaponFilter"><option value="all">All weapons</option></select>
+      <span id="resultCount" class="count">0 shown</span>
     </section>
+
+    <section id="barList" class="bar-list"></section>
   </main>
+
+  <dialog id="detailDialog">
+    <article id="detailPanel" class="detail-dialog"></article>
+  </dialog>
 
   <dialog id="editorDialog">
     <form id="editorForm" method="dialog">
@@ -81,11 +45,12 @@
         <label>Category<select id="presetCategory"></select></label>
         <label>Combat style<select id="presetStyle"></select></label>
         <label>Mode<select id="presetMode"></select></label>
-        <label>Weapon type<input id="presetWeapon" placeholder="Dual wield, 2H, Necromancy..." /></label>
+        <label>Weapon type<select id="presetWeapon"></select></label>
         <label>Target<input id="presetTarget" placeholder="Boss, Slayer monster, general" /></label>
       </div>
       <label>Tags<input id="presetTags" placeholder="comma separated: boss, beginner, poisonable" /></label>
-      <label>Abilities<textarea id="presetAbilities" rows="4" placeholder="One per slot or comma separated"></textarea></label>
+      <label>Abilities<textarea id="presetAbilities" rows="5" placeholder="One ability per line or comma separated. Maximum 14 slots."></textarea></label>
+      <p id="abilityWarning" class="warning hidden">Only the first 14 abilities will be saved.</p>
       <label>Unlock requirements<textarea id="presetRequirements" rows="3" placeholder="One per line"></textarea></label>
       <label>Notes<textarea id="presetNotes" rows="4"></textarea></label>
       <menu>

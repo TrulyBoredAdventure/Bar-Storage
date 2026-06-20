@@ -1,0 +1,13 @@
+{
+  "appName": "Bar Storage",
+  "description": "Simple RS3 ability bar storage with recommended bars and personal presets.",
+  "appUrl": "index.html",
+  "configUrl": "appconfig.json",
+  "iconUrl": "icon.svg",
+  "defaultWidth": 980,
+  "defaultHeight": 720,
+  "minWidth": 720,
+  "minHeight": 560,
+  "requestHandlers": [],
+  "activators": []
+}

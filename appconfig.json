@@ -1,13 +1,13 @@
 {
   "appName": "Bar Storage",
-  "description": "RS3 action bar references and personal preset storage.",
+  "description": "RS3 visual action bar references and personal preset storage.",
   "appUrl": "https://TrulyBoredAdventure.github.io/Bar-Storage/",
   "configUrl": "https://TrulyBoredAdventure.github.io/Bar-Storage/appconfig.json",
   "iconUrl": "icon.svg",
-  "defaultWidth": 980,
+  "defaultWidth": 1120,
   "defaultHeight": 720,
-  "minWidth": 720,
-  "minHeight": 560,
+  "minWidth": 760,
+  "minHeight": 520,
   "requestHandlers": [],
   "activators": []
 }

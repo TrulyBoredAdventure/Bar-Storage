@@ -1,48 +1,47 @@
 # Bar Storage
 
-Bar Storage is an Alt1 helper for saving, viewing, importing, and exporting RuneScape 3 action bars.
-
-It is designed for players who want a simple visual library of combat bars without a large instruction-heavy interface.
+Bar Storage is an Alt1 app for viewing RuneScape 3 action-bar references and saving your own named bars.
 
 ## Install
 
-Install it in Alt1 with:
+Install the app in Alt1 with:
 
 ```text
 alt1://addapp/https://TrulyBoredAdventure.github.io/Bar-Storage/appconfig.json
 ```
 
-## What it does
+## Using the bar library
 
-- Shows compact action bar rows with a name tag and 14-slot layout
-- Includes starter reference bars for bosses, Slayer, and general combat
-- Lets you create your own named bars
-- Supports Revolution, Revolution++, full manual, and hybrid manual/Revo bars
-- Filters by category, combat style, combat mode, and weapon type
-- Limits every bar to the RuneScape action bar length of 14 slots
-- Allows importing and exporting your saved bars as JSON
+The main screen shows each preset as a name tag followed by a 14-slot visual action bar. Hover over an icon to see the ability name.
 
-## Creating a bar
+Use the search box and filters to narrow bars by:
 
-Select **New bar**, then enter:
-
-- Bar name
-- Category
+- Boss or Slayer target
 - Combat style
-- Mode
+- Revolution, Revolution++, or full manual
 - Weapon type
-- Target, such as a boss, Slayer monster, or general use
-- Up to 14 abilities
-- Optional tags, notes, and unlock requirements
+- Ability name
 
-When a combat style is selected, the weapon dropdown only shows weapons that work with that style.
+Select **Details** to view the full ability list, unlock requirements, notes, and the listed reference source.
 
-## Sharing bars
+## Saving your own bars
 
-Use **Export** to download your saved bars.
+Select **New bar** to create a preset. Choose a combat style first; the weapon menu will only show weapons compatible with that style.
 
-Another player can use **Import** to add those bars to their own Bar Storage app.
+Each bar supports a maximum of 14 abilities. Additional entries are not saved.
+
+Recommended bars can be copied with **Duplicate** and then edited without changing the original reference.
+
+## Import and export
+
+**Export** downloads all personal presets as a JSON backup. **Import** restores presets from a Bar Storage JSON file. Imported bars are saved as new personal presets and do not overwrite the built-in library.
+
+## Ability icons
+
+Bar Storage loads ability artwork from RuneScape Wiki and PvME-supported image sources. If an image cannot be reached, the slot displays a local styled fallback instead of remaining blank.
+
+RuneScape and RuneScape 3 are trademarks of Jagex Ltd. Game artwork remains the property of its respective owner. Reference links are provided inside the app.
 
 ## Notes
 
-Reference bars are intended as starting points. Adjust them for your unlocks, gear, keybinds, and comfort level.
+Recommended bars are starting references. Combat updates, equipment, unlocks, perks, relics, prayers, familiars, encounter mechanics, and player preference may change the best layout for a specific account.

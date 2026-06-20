@@ -1,8 +1,8 @@
 {
   "appName": "Bar Storage",
-  "description": "Simple RS3 ability bar storage with recommended bars and personal presets.",
-  "appUrl": "index.html",
-  "configUrl": "appconfig.json",
+  "description": "Save, view, import, and export RuneScape 3 action bars.",
+  "appUrl": "https://TrulyBoredAdventure.github.io/Bar-Storage/",
+  "configUrl": "https://TrulyBoredAdventure.github.io/Bar-Storage/appconfig.json",
   "iconUrl": "icon.svg",
   "defaultWidth": 980,
   "defaultHeight": 720,

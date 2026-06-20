@@ -1,8 +1,8 @@
 # Bar Storage
 
-Bar Storage is an Alt1 app for RuneScape 3 ability bar references and personal preset storage.
+Bar Storage is an Alt1 app for saving, browsing, importing, and exporting RuneScape 3 action bars.
 
-It lets you browse simple visual ability bars for bosses, Slayer monsters, combat styles, weapon types, Revolution, Revolution++, and full manual setups. You can also create and save your own named bars.
+It is designed for simple visual bar storage: each entry has a name tag, combat style, mode, weapon type, source note, and a 14-slot action bar layout.
 
 ## Install
 
@@ -12,45 +12,75 @@ Install it in Alt1 with:
 alt1://addapp/https://TrulyBoredAdventure.github.io/Bar-Storage/appconfig.json
 ```
 
-## What Bar Storage does
+## What it does
 
-- Shows simple action-bar style layouts
-- Labels each bar with a name, style, mode, and category
-- Includes boss bars, Slayer bars, recommended bars, and personal bars
-- Supports Revolution, Revolution++, and full manual references
-- Lets you create your own named presets
-- Lets you edit, duplicate, tag, delete, import, and export presets
-- Stores your personal bars locally in Alt1/browser storage
-- Includes notes and unlock requirement reminders
+- Browse reference bars for PvM, bosses, Slayer, Revolution, Revolution++, and manual play
+- View simple 14-slot visual action bars
+- Filter by category, combat style, combat mode, and weapon type
+- Search by boss, Slayer monster, ability, tag, or source
+- Create your own named action bars
+- Edit, duplicate, and delete personal bars
+- Export your personal bars as JSON
+- Import shared bars from another player
+- Keep reference bars and personal bars separate
 
-## Using the app
+## Reference bars
 
-### Browse bars
+The app includes a larger starter library of compact reference bars inspired by current PvME and RuneScape Wiki action bar categories.
 
-Use the search box and filters to find bars by boss, Slayer monster, combat style, weapon type, mode, tag, or ability name.
+Reference bars include a source label in the details view. These are meant to be editable baselines, not guaranteed best-in-slot rotations.
 
-### View a bar
+RuneScape combat changes over time. Always check the linked source and adjust for your unlocks, gear, relics, prayers, aura, familiar, perks, and the encounter.
 
-Select a bar to see its visual layout, tags, unlock requirements, and notes. The layout is designed to be easy to copy into your RuneScape action bar.
+## Creating a bar
 
-### Save your own bars
+Select **New bar**, then fill in:
 
-Use **New preset** to create a personal bar. Add a name, combat style, mode, weapon type, tags, notes, requirements, and abilities.
+- Name
+- Category
+- Combat style
+- Mode
+- Weapon type
+- Target
+- Tags
+- Abilities
+- Unlock requirements
+- Notes
 
-### Duplicate a recommended bar
+Bars are limited to 14 slots, matching the maximum action bar length used by the app.
 
-Use **Duplicate** on any recommended bar to copy it into your personal presets, then edit it for your own unlocks, gear, or preferences.
+## Combat style and weapon filtering
 
-### Import and export
+When you choose a combat style, the weapon dropdown only shows weapon types that fit that style.
 
-Use **Export** to back up your saved bars as a JSON file. Use **Import** to restore your own backup or add bars shared by another player.
+Examples:
 
-## Recommendation notes
+- Necromancy shows death guard, lantern, and Necromancy options
+- Magic shows staff and dual-wield magic options
+- Ranged shows bow, crossbow, dual-wield ranged, and thrown options
+- Melee shows 2H, dual-wield, halberd-range, and shield options
 
-Recommended bars are starter references. RuneScape combat changes over time, and ideal bars depend on unlocks, gear, perks, relics, prayers, aura, familiar, encounter, and personal preference.
+## Sharing bars
 
-Use the included bars as editable examples, not fixed best-in-slot rules.
+Use **Export** to download your personal bars as a JSON file.
 
-## Privacy
+Another player can use **Import** to load that file into their own Bar Storage app.
 
-Your personal presets are saved locally. They are not uploaded anywhere by the app.
+Imported bars are saved as personal bars and can be edited or deleted without changing the built-in reference library.
+
+## Data storage
+
+Personal bars are saved locally in the Alt1/browser storage on your computer.
+
+Export your bars before clearing browser data, changing devices, or reinstalling.
+
+## Files
+
+```text
+appconfig.json   Alt1 app manifest
+index.html       Main app screen
+data.js          Built-in reference bars
+app.js           App behavior and local storage
+styles.css       App styling
+icon.svg         App icon
+```
